@@ -119,6 +119,27 @@ class Player:
         self.defense += 1
         print(f"You leveled up to level {self.level}!")
 
+    def pay_gold(self, amount):
+        # 1. Count total gold in inventory
+        total_gold = sum(item.value for item in self.inventory if item.name == "Gold Coin")
+        
+        if total_gold < amount:
+            print("You don't have enough gold!")
+            return False
+        
+        # 2. Remove gold coins until 'amount' is reached
+        paid = 0
+        # Create a list of items to remove
+        to_remove = [item for item in self.inventory if item.name == "Gold Coin"]
+        
+        for coin in to_remove:
+            if paid < amount:
+                self.inventory.remove(coin)
+                paid += coin.value
+                
+        print(f"Paid {amount} gold.")
+        return True
+
 def damage_calculator(attacker, defender):
     damage = attacker.attack - defender.defense
     return max(0, damage)

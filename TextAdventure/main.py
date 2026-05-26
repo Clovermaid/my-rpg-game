@@ -45,6 +45,8 @@ def room_starter_village(player):
         return 'forest'
     elif action == '3':
         return 'old man\'s house'
+    elif action == '4':
+        return 'shop'
     return 'starter village'
 def room_old_mans_house(player):
     print('You are in the old man\'s house.')
@@ -111,6 +113,37 @@ def room_old_man(player, quest):
             
         elif action == '2':        
             return 'old man\'s house'
+def room_shop(player):
+    print("--- Welcome to the Trading Post! ---")
+    print("Merchant: 'I have some supplies for your journey.'")
+    
+    # 1. Show available wares
+    print("1: Buy Health Potion (20 Gold)")
+    print("2: Buy Attack Potion (30 Gold)")
+    print("3: Leave shop")
+    
+    choice = input("Choice: ")
+    
+    # 2. Logic for purchasing
+    if choice == '1':
+        if player.pay_gold(20):
+            player.add_item(combat.Item("Health Potion", "Restores 10 HP", "heal", 10))
+            print("Merchant: 'A fine choice!'")
+        else:
+            print("Merchant: 'You don't have enough gold for that!'")
+            
+    elif choice == '2':
+        if player.pay_gold(30):
+            player.add_item(combat.Item("Attack Potion", "Adds 3 attack power", "attack_boost", 3))
+            print("Merchant: 'This will help you in battle!'")
+        else:
+            print("Merchant: 'Come back when you have more gold.'")
+            
+    elif choice == '3':
+        return 'starter village'
+        
+    # Stay in the shop if we didn't leave
+    return 'shop'
 def main_menu():
     print("================================")
     print("   WELCOME TO THE TEXT ADVENTURE")
@@ -129,7 +162,8 @@ room_map = {
     'old man\'s house': room_old_mans_house,
     'your house': room_your_house,
     'forest': room_forest,
-    'quest': room_old_man
+    'quest': room_old_man,
+    'shop': room_shop
 }
 def run_game():
     current_location = 'starter village'
@@ -144,6 +178,8 @@ def run_game():
             # Check if the room is the quest room, which needs the extra 'rat_quest' argument
             if current_location == 'quest':
                 current_location = room_function(player, rat_quest)
+            elif current_location == 'shop':
+                current_location = room_function(player)
             else:
                 current_location = room_function(player)
         else:
