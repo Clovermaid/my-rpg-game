@@ -12,3 +12,4 @@ A simple text-based adventure game built in Python.
 *   **Combat System**: Turn-based battles with attack, defend, and inventory usage.
 *   **Navigation**: Explore different locations like the village, your house, and the forest.
 *   **Questing**: Accept and track quests from NPCs.
+*   **Shop**: Buy items from the merchant with gold
