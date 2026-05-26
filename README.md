@@ -13,6 +13,11 @@ Experience a cleaner, more immersive world with:
 * **Questing**: Accept and track quests from NPCs.
 * **Shop**: Buy items from the merchant with gold.
 
+## Planned Features
+*   [ ] **Dynamic Corruption System**: A system that increases difficulty the longer you explore.
+*   [ ] **Advanced Loot Tables**: More rare items for your inventory.
+*   [ ] **Expanded World**: New areas accessible through the Trade Road.
+
 ## How to Play
 1. Make sure you have **Python** installed.
 2. Clone this repository or download the files.
